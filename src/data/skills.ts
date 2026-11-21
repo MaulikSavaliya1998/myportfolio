@@ -1,0 +1,152 @@
+import type { RoleKey, SkillCategory } from "@/types";
+
+const ALL: RoleKey[] = ["fullstack", "frontend", "backend", "mern"];
+const FE: RoleKey[] = ["fullstack", "frontend", "mern"];
+const BE: RoleKey[] = ["fullstack", "backend", "mern"];
+const FS: RoleKey[] = ["fullstack", "backend"];
+
+export const skillCategories: SkillCategory[] = [
+  {
+    id: "frontend",
+    title: "Frontend",
+    description: "Interfaces that are fast, accessible and a joy to use.",
+    skills: [
+      { name: "React.js", roles: FE },
+      { name: "Next.js", roles: FE },
+      { name: "TypeScript", roles: ALL },
+      { name: "JavaScript (ES6+)", roles: ALL },
+      { name: "HTML5", roles: FE },
+      { name: "CSS3", roles: FE },
+      { name: "Tailwind CSS", roles: FE },
+      { name: "Shadcn UI", roles: FE },
+      { name: "Material UI", roles: ["frontend", "mern"] },
+      { name: "PrimeReact", roles: ["frontend"] },
+      { name: "Responsive Design", roles: FE },
+      { name: "Accessibility", roles: ["frontend"] },
+    ],
+  },
+  {
+    id: "state",
+    title: "State & Data",
+    description: "Predictable state and smart caching on the client.",
+    skills: [
+      { name: "Redux Toolkit", roles: FE },
+      { name: "RTK Query", roles: FE },
+      { name: "React Query", roles: ["frontend", "fullstack"] },
+      { name: "Context API", roles: ["frontend"] },
+      { name: "React Hook Form", roles: ["frontend"] },
+      { name: "TanStack Table", roles: ["frontend"] },
+    ],
+  },
+  {
+    id: "performance",
+    title: "Performance & SEO",
+    description: "Every millisecond and every search ranking counts.",
+    skills: [
+      { name: "SSR / SSG / ISR", roles: FE },
+      { name: "Code Splitting", roles: ["frontend"] },
+      { name: "Lazy Loading", roles: ["frontend"] },
+      { name: "Core Web Vitals", roles: ["frontend"] },
+      { name: "SEO", roles: ["frontend", "fullstack"] },
+      { name: "i18n", roles: ["frontend", "fullstack"] },
+    ],
+  },
+  {
+    id: "backend",
+    title: "Backend & APIs",
+    description: "Robust services that scale with the business.",
+    skills: [
+      { name: "Node.js", roles: BE },
+      { name: "Express.js", roles: BE },
+      { name: "Nest.js", roles: FS },
+      { name: "REST APIs", roles: ALL },
+      { name: "GraphQL", roles: BE },
+      { name: "WebSocket", roles: BE },
+      { name: "Microservices", roles: FS },
+      { name: "Event-Driven Architecture", roles: FS },
+      { name: "Serverless", roles: FS },
+      { name: "System Design", roles: FS },
+    ],
+  },
+  {
+    id: "data",
+    title: "Databases & Messaging",
+    description: "The right store for the job, tuned for speed.",
+    skills: [
+      { name: "PostgreSQL", roles: FS },
+      { name: "MongoDB", roles: BE },
+      { name: "MySQL", roles: FS },
+      { name: "Redis", roles: BE },
+      { name: "Apache Kafka", roles: BE },
+      { name: "Typesense", roles: ALL },
+      { name: "Elasticsearch", roles: FS },
+      { name: "Supabase", roles: FS },
+    ],
+  },
+  {
+    id: "cloud",
+    title: "Cloud & DevOps",
+    description: "Ship confidently, monitor everything.",
+    skills: [
+      { name: "AWS", roles: BE },
+      { name: "AWS Lambda", roles: FS },
+      { name: "AWS S3", roles: ALL },
+      { name: "AWS Cognito", roles: ALL },
+      { name: "Docker", roles: FS },
+      { name: "GitHub Actions", roles: ALL },
+      { name: "CI/CD", roles: ALL },
+      { name: "Sentry", roles: ["fullstack", "frontend"] },
+    ],
+  },
+  {
+    id: "quality",
+    title: "Testing & Security",
+    description: "Quality and safety built in, not bolted on.",
+    skills: [
+      { name: "Jest", roles: ALL },
+      { name: "React Testing Library", roles: ["frontend"] },
+      { name: "Postman", roles: BE },
+      { name: "ESLint", roles: ALL },
+      { name: "RBAC", roles: FS },
+      { name: "JWT", roles: BE },
+    ],
+  },
+  {
+    id: "ai",
+    title: "AI & Tools",
+    description: "Using AI to build smarter products — and build them faster.",
+    skills: [
+      { name: "OpenAI API", roles: ALL },
+      { name: "LLM Integration", roles: FS },
+      { name: "Claude Code", roles: ALL },
+      { name: "Prompt Engineering", roles: ALL },
+      { name: "Mapbox", roles: ["frontend", "fullstack"] },
+      { name: "Google Maps", roles: ["frontend", "fullstack"] },
+      { name: "Mixpanel", roles: ["frontend", "fullstack"] },
+      { name: "Git", roles: ALL },
+    ],
+  },
+];
+
+/** Shown in the infinite marquee in the hero. */
+export const marqueeSkills = [
+  "React.js",
+  "Next.js",
+  "TypeScript",
+  "Node.js",
+  "Express.js",
+  "Nest.js",
+  "Tailwind CSS",
+  "Shadcn UI",
+  "Redux Toolkit",
+  "GraphQL",
+  "PostgreSQL",
+  "MongoDB",
+  "Redis",
+  "Apache Kafka",
+  "AWS",
+  "Docker",
+  "GitHub Actions",
+  "OpenAI API",
+  "Claude Code",
+];

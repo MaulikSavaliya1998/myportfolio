@@ -1,0 +1,210 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ───────────── Design tokens (Tailwind theme bridge) ───────────── */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-code);
+  --font-heading: var(--font-display);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-brand-1: var(--brand-1);
+  --color-brand-2: var(--brand-2);
+  --color-brand-3: var(--brand-3);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+  --animate-aurora: aurora 18s ease-in-out infinite alternate;
+  --animate-shine: shine 6s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-spin-slow: spin 14s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-50% - 0.75rem)); }
+  }
+  @keyframes aurora {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(4%, -6%, 0) scale(1.12); }
+    100% { transform: translate3d(-5%, 5%, 0) scale(0.95); }
+  }
+  @keyframes shine {
+    from { background-position: 0% 50%; }
+    to { background-position: 200% 50%; }
+  }
+  @keyframes wave {
+    0%, 60%, 100% { transform: rotate(0deg); }
+    10%, 30% { transform: rotate(14deg); }
+    20% { transform: rotate(-8deg); }
+    40% { transform: rotate(-4deg); }
+    50% { transform: rotate(10deg); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   BRAND: --brand is injected on <html> from siteConfig.brandColor
+   (src/config/site.ts). Every gradient, glow and highlight is derived
+   from it with color-mix(). The value below is only a fallback.
+   ════════════════════════════════════════════════════════════════ */
+:root {
+  --brand: #7c3aed;
+}
+
+/* Light theme — clean neutral canvas, brand used sparingly */
+:root {
+  --radius: 0.75rem;
+  --background: #fbfbfd;
+  --foreground: #0f0d17;
+  --card: #ffffff;
+  --card-foreground: #0f0d17;
+  --popover: #ffffff;
+  --popover-foreground: #0f0d17;
+  --primary: var(--brand);
+  --primary-foreground: #ffffff;
+  --secondary: color-mix(in oklch, var(--brand) 6%, #f4f4f6);
+  --secondary-foreground: #1c1a24;
+  --muted: #f3f3f6;
+  --muted-foreground: #63616e;
+  --accent: color-mix(in oklch, var(--brand) 9%, white);
+  --accent-foreground: color-mix(in oklch, var(--brand) 70%, black);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: #e7e6ec;
+  --input: #e2e1e8;
+  --ring: var(--brand);
+
+  /* Monochrome brand scale derived from --brand */
+  --brand-1: color-mix(in oklch, var(--brand) 75%, black); /* deep */
+  --brand-2: var(--brand); /* base */
+  --brand-3: color-mix(in oklch, var(--brand) 60%, white); /* light */
+  --grid-line: color-mix(in oklch, var(--brand) 7%, transparent);
+  --glow: color-mix(in oklch, var(--brand) 14%, transparent);
+}
+
+/* Dark theme — near-black ink with a hint of brand */
+.dark {
+  --background: #09080d;
+  --foreground: #f4f3f8;
+  --card: #121118;
+  --card-foreground: #f4f3f8;
+  --popover: #141219;
+  --popover-foreground: #f4f3f8;
+  --primary: color-mix(in oklch, var(--brand) 75%, white);
+  --primary-foreground: #0b0a10;
+  --secondary: #1b1a22;
+  --secondary-foreground: #f4f3f8;
+  --muted: #18171e;
+  --muted-foreground: #9a98a6;
+  --accent: color-mix(in oklch, var(--brand) 18%, #121118);
+  --accent-foreground: #f4f3f8;
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: #24232c;
+  --input: #2a2933;
+  --ring: color-mix(in oklch, var(--brand) 75%, white);
+
+  --brand-1: var(--brand);
+  --brand-2: color-mix(in oklch, var(--brand) 70%, white);
+  --brand-3: color-mix(in oklch, var(--brand) 40%, white);
+  --grid-line: rgb(255 255 255 / 0.035);
+  --glow: color-mix(in oklch, var(--brand) 20%, transparent);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans scroll-smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-background text-foreground;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: color-mix(in oklch, var(--brand-1) 35%, transparent);
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  h1, h2, h3, h4 {
+    @apply font-heading tracking-tight;
+  }
+}
+
+/* ───────────── Custom utilities ───────────── */
+@utility text-gradient {
+  background-image: linear-gradient(100deg, var(--brand-1), var(--brand-2) 35%, var(--brand-3) 50%, var(--brand-2) 65%, var(--brand-1));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-brand-gradient {
+  background-image: linear-gradient(
+    135deg,
+    color-mix(in oklch, var(--brand) 78%, black),
+    var(--brand) 55%,
+    color-mix(in oklch, var(--brand) 82%, white)
+  );
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+@utility glass {
+  background: color-mix(in oklch, var(--background) 88%, transparent);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+}
+
+@utility mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+@utility mask-fade-b {
+  mask-image: linear-gradient(to bottom, black 55%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
